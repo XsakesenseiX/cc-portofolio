@@ -29,6 +29,25 @@ def get_azure_db_connection():
         print(f"Database Connection Error: {err}")
         return None
 
+def test_database_connection():
+    try:
+        connection = get_azure_db_connection()
+        if connection.is_connected():
+            print("Successfully connected to the database!")
+            cursor = connection.cursor()
+            cursor.execute("SELECT VERSION()")
+            db_version = cursor.fetchone()
+            print(f"Database Version: {db_version[0]}")
+            cursor.close()
+            connection.close()
+        else:
+            print("Connection failed.")
+    except Exception as e:
+        print(f"Connection test failed: {e}")
+
+# Call this function to verify connection
+test_database_connection()
+
 app = Flask(__name__, 
             static_folder='static', 
             template_folder='templates')
