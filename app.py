@@ -20,7 +20,7 @@ def get_azure_db_connection():
             #user="adminadminadmin", password="Admin1234", host="maltekk.mysql.database.azure.com", port=3306, database="maltekk-db"
             host='maltekk.mysql.database.azure.com',
             user='adminadminadmin',
-            password='Admin1234',
+            password='Admin12345',
             database='maltekk-db',
             port='3306'
         )
