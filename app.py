@@ -8,21 +8,17 @@ import google.generativeai as genai
 
 
 db_config = {
-    'host': ('DB_HOST', 'localhost'),
-    'user': ('DB_USER', 'root'),
-    'password': ('DB_PASSWORD', ''),
-    'database': ('DB_NAME', 'fp_cc'),
+    'host': ('maltekk.mysql.database.azure.com'),
+    'user': ('adminadminadmin'),
+    'password': (''),
+    'database': ('maltekk-db'),
     'ssl_ca': '/path/to/DigiCertGlobalRootCA.crt.pem'
 }
 
 def get_azure_db_connection():
     try:
         connection = mysql.connector.connect(
-            host=('AZURE_MYSQL_HOST'),
-            user=('AZURE_MYSQL_USER'),
-            password=('AZURE_MYSQL_PASSWORD'),
-            database=('AZURE_MYSQL_DATABASE'),
-            ssl_ca='/path/to/DigiCertGlobalRootCA.crt.pem'
+            user="adminadminadmin", password="", host="maltekk.mysql.database.azure.com", port=3306, database="maltekk-db",
         )
         return connection
     except Error as e:
