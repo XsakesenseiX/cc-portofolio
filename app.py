@@ -17,11 +17,16 @@ db_config = {
 def get_azure_db_connection():
     try:
         connection = mysql.connector.connect(
-            user="adminadminadmin", password="Admin1234", host="maltekk.mysql.database.azure.com", port=3306, database="maltekk-db",
+            #user="adminadminadmin", password="Admin1234", host="maltekk.mysql.database.azure.com", port=3306, database="maltekk-db"
+            host=os.environ.get('MYSQL_HOST', 'maltekk.mysql.database.azure.com'),
+            user=os.environ.get('MYSQL_USER', 'adminadminadmin'),
+            password=os.environ.get('MYSQL_PASSWORD', 'Admin1234'),
+            database=os.environ.get('MYSQL_DATABASE', 'maltekk-db'),
+            port=3306
         )
         return connection
-    except Error as e:
-        print(f"Error: {e}")
+    except mysql.connector.Error as err:
+        print(f"Database Connection Error: {err}")
         return None
 
 app = Flask(__name__, 
