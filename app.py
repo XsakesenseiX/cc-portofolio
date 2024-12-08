@@ -8,20 +8,20 @@ import google.generativeai as genai
 
 
 db_config = {
-    'host': os.environ.get('DB_HOST', 'localhost'),
-    'user': os.environ.get('DB_USER', 'root'),
-    'password': os.environ.get('DB_PASSWORD', ''),
-    'database': os.environ.get('DB_NAME', 'fp_cc'),
+    'host': ('DB_HOST', 'localhost'),
+    'user': ('DB_USER', 'root'),
+    'password': ('DB_PASSWORD', ''),
+    'database': ('DB_NAME', 'fp_cc'),
     'ssl_ca': '/path/to/DigiCertGlobalRootCA.crt.pem'
 }
 
 def get_azure_db_connection():
     try:
         connection = mysql.connector.connect(
-            host=os.environ.get('AZURE_MYSQL_HOST'),
-            user=os.environ.get('AZURE_MYSQL_USER'),
-            password=os.environ.get('AZURE_MYSQL_PASSWORD'),
-            database=os.environ.get('AZURE_MYSQL_DATABASE'),
+            host=('AZURE_MYSQL_HOST'),
+            user=('AZURE_MYSQL_USER'),
+            password=('AZURE_MYSQL_PASSWORD'),
+            database=('AZURE_MYSQL_DATABASE'),
             ssl_ca='/path/to/DigiCertGlobalRootCA.crt.pem'
         )
         return connection
