@@ -11,7 +11,7 @@ db_config = {
     'host': ('maltekk.mysql.database.azure.com'),
     'user': ('adminadminadmin'),
     'password': ('Admin12345'),
-    'database': ('maltekk-db')
+    'database': ('maltekk')
 }
 
 def get_azure_db_connection():
@@ -21,7 +21,7 @@ def get_azure_db_connection():
             host=os.environ.get('MYSQL_HOST', 'maltekk.mysql.database.azure.com'),
             user=os.environ.get('MYSQL_USER', 'adminadminadmin'),
             password=os.environ.get('MYSQL_PASSWORD', 'Admin1234'),
-            database=os.environ.get('MYSQL_DATABASE', 'maltekk-db'),
+            database=os.environ.get('MYSQL_DATABASE', 'maltekk'),
             port=3306
         )
         return connection
