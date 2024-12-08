@@ -1,0 +1,5 @@
+flask
+mysql-connector-python
+google-generativeai
+werkzeug
+gunicorn

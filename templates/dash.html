@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Cloud Computing</title>
+    <link rel="icon" href="../static/img/about.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+   
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dash.css') }}">
+
+
+</head>
+<body>
+
+    <!-- header-->
+     <header class="header">
+        <a href="#" class="logo">MALTEK.</a>
+
+        <nav class="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#portofolio">Album</a>
+            <a href="#team">Team</a>
+            <a href="/kegiatan/">Kegiatan</a>
+            <a href="/"><i class='bx bx-log-out-circle'></i></a>
+        </nav>
+
+        <div class="bx bx-moon" id="darkMode-icon"></div>
+
+        
+        
+        <div class="bx bx-menu" id="menu-icon"></div>
+
+        <div class="bx bx-logout"  id="logout-btn"></div>
+     </header>
+
+
+     <!-- Home -->
+    <section class="home" id="home">
+        <div class="home-content">
+            <h3>Hello</h3>
+            <h1 id="full-name-display">{{ full_name }}</h1>
+            <p>Selamat datang di Kelompok Maltek tempat berkumpulnya kreativitas, teknologi, dan inovasi. Dengan semangat kolaborasi, mari kita jelajahi dunia teknologi, multimedia, dan ide-ide hebat lainnya. Jangan ragu untuk bertanya, berdiskusi, dan berkontribusi.</p>
+
+            <a href="#about" class="btn">Selengkapnya</a>
+        </div>
+
+        <div class="profession-container">
+            <div class="profession-box">
+                <div class="profession" style="--i:0;">
+                    <i class='bx bx-code-alt'></i>
+                    <h3>Web Developer</h3>
+                </div>
+                <div class="profession" style="--i:1;">
+                    <i class='bx bx-briefcase' ></i>
+                    <h3>Personal Trainer</h3>
+                </div>
+                <div class="profession" style="--i:2;">
+                    <i class='bx bx-landscape'></i>
+                    <h3>Tracking Guide</h3>
+                </div>
+                <div class="profession" style="--i:3;"> 
+                    <i class='bx bxs-music' ></i>
+                    <h3>Music Producer</h3>
+                </div>
+
+                <div class="circle"></div>
+            </div>
+
+            <div class="overlay"></div>
+        </div>
+        
+
+        <div class="home-img">
+            <img src="img/" alt="">
+        </div>
+    </section>
+
+
+<!-- about -->
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="../static/img/about.png" alt="">
+        </div>
+
+        <div class="about-content">
+            <h2 class="heading">About <span>Us</span></h2>
+            <h3>Hi, Kami Akan Siap Kapan Saja</h3>
+            <p>Maltek adalah Kelompok yang mengedepankan inovasi teknologi untuk menciptakan solusi efisien dan berkelanjutan. Kami berfokus pada pengembangan teknologi yang dapat membantu mengatasi tantangan di berbagai sektor, dengan tim yang ahli dalam riset, pengembangan, dan penerapan solusi teknologi yang relevan. Komitmen kami adalah memberikan dampak positif melalui teknologi yang mendukung kemajuan industri dan masyarakat</p>
+            <a href="#team" class="btn">Contact Us</a>
+        </div>
+    </section>
+    
+       <!-- album -->
+        
+       <section class="portofolio" id="portofolio">
+        <h2 class="heading">Our <span>Album</span></h2>
+    
+        <!-- Galeri Gambar -->
+        <div class="image-container">
+            {% for image in images %}
+            <div class="image-item">
+                <img src="{{ url_for('static', filename='uploads/' + image[0]) }}" alt="{{ image[0] }}">
+            </div>
+            {% endfor %}
+        </div>
+    
+        <!-- Pop-Up Konfirmasi -->
+        <div id="popup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); align-items: center; justify-content: center; z-index: 9999;">
+            <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; max-width: 400px; width: 90%;">
+                <h3>Konfirmasi Upload</h3>
+                <img id="previewImage" src="#" alt="Preview" style="width: 100%; height: auto; margin: 10px 0; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <p id="fileName"></p>
+                <div>
+                    <button type="button" onclick="confirmUpload()" style="padding: 10px 20px; margin-right: 10px; background: #00c292; color: white; border: none; border-radius: 5px; cursor: pointer;">Upload</button>
+                    <button type="button" onclick="closePopup()" style="padding: 10px 20px; background: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer;">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Upload -->
+        <form id="uploadForm" action="{{ url_for('upload_file') }}" method="POST" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="file" accept="image/*" style="display: none;" onchange="showPreview(event)">
+    
+            <!-- Ganti label dengan a href -->
+            <a href="#" class="btn-up" onclick="document.getElementById('fileInput').click(); return false;">UPLOAD</a>
+        </form>
+    </section>
+    
+
+
+        <!-- team -->
+        <section class="team" id="team">
+            <div class="team-container">
+                <h2 class="heading">Our <span>Team</span></h2>
+
+                <div class="team-wrapper">
+                    <div class="team-box mySwiper">
+                        <div class="team-content swiper-wrapper">
+                            <div class="team-slide swiper-slide">
+                                <img src="../static/img/prof1.jpeg" alt="">
+                                <h3>Muhammad Iqbal</h3>
+                                <p>Full Stack Developer and Cyber Security Enthusiast</p>
+                                            <div class="social-media">
+                                                <a href="https://wa.me/6287885522980"><i class='bx bxl-whatsapp'></i></a>
+                                                <a href="https://github.com/XsakesenseiX"><i class='bx bxl-github' ></i></a>
+                                                <a href="https://www.instagram.com/baaalle"><i class='bx bxl-instagram-alt' ></i></a>
+                                                <a href="mailto:m.iqbal@students.amikom.ac.id"><i class='bx bx-envelope' ></i></a>
+                                            </div>
+                            </div>
+                            <div class="team-slide swiper-slide">
+                                <img src="../static/img/prof2.jpeg" alt="">
+                                <h3>Rivaldo Oroh</h3>
+                                <p>Dedicated personal trainer, helping clients achieve fitness goals.</p>
+                                            <div class="social-media">
+                                                <a href="https://wa.me/6281340484516"><i class='bx bxl-whatsapp'></i></a>
+                                                <a href="https://github.com/rsteve13"><i class='bx bxl-github' ></i></a>
+                                                <a href="https://instagram.com/__orohrivaldo13"><i class='bx bxl-instagram-alt' ></i></a>
+                                                <a href="mailto:rivaldooroh13@students.amikom.ac.id"><i class='bx bx-envelope' ></i></a>
+                                            </div>
+                            </div>
+                            <div class="team-slide swiper-slide">
+                                <img src="../static/img/prof3.jpeg" alt="">
+                                <h3>Krisna Yogi</h3>
+                                <p>Experienced tracking guide, leading adventurers to new heights.</p>
+                                            <div class="social-media">
+                                                <a href="https://wa.me/6281937555833"><i class='bx bxl-whatsapp'></i></a>
+                                                <a href="https://github.com/krisnayogix"><i class='bx bxl-github' ></i></a>
+                                                <a href="https://instagram.com/krisna.gi"><i class='bx bxl-instagram-alt' ></i></a>
+                                                <a href="mailto:krisnayogi@students.amikom.ac.id"><i class='bx bx-envelope' ></i></a>
+                                            </div>
+                            </div>
+                            <div class="team-slide swiper-slide">
+                                <img src="../static/img/prof4.jpeg" alt="">
+                                <h3>Arizka Wahyu</h3>
+                                <p>creative music producer, shaping unique sounds and tracks.</p>
+                                            <div class="social-media">
+                                                <a href="https://wa.me/6285183014156"><i class='bx bxl-whatsapp'></i></a>
+                                                <a href="https://github.com/Arez15"><i class='bx bxl-github' ></i></a>
+                                                <a href="https://instagram.com/arizkagg_"><i class='bx bxl-instagram-alt' ></i></a>
+                                                <a href="mailto:arizkaanggara@students.amikom.ac.id"><i class='bx bx-envelope' ></i></a>
+                                            </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chatbot-icon" class="chatbot-icon">
+                <i class='bx bx-chat'></i>
+            </div>
+
+            <div id="chatbot-container" class="chatbot-container" style="display: none;">
+                <div class="chatbot-header">
+                    <h3>AI Assistant</h3>
+                    <button id="close-chatbot" class="close-chatbot">
+                        <i class='bx bx-x'></i>
+                    </button>
+                </div>
+                <div id="chat-messages" class="chat-messages"></div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Type your message...">
+                    <button id="send-btn">Send</button>
+                </div>
+            </div>
+
+          <!-- Footer -->
+           <footer class="footer">
+                <div class="footer-text">
+                    <p> Copyright &copy; 2024 by Kelompok Maltek | All Rights Reserved</p>
+                </div>
+                <div class="footer-iconTop">
+                    <a href="#home"><i class='bx bx-up-arrow-alt' ></i></a>
+                </div>
+           </footer>
+         
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script src="{{ url_for('static', filename='js/cc.js') }}"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // Get references to elements
+                const fullNameDisplay = document.getElementById('full-name-display');
+                const greetingElement = document.querySelector('.home-content h3');
+                
+                // Retrieve stored full name
+                const storedFullName = localStorage.getItem('selectedFullName');
+                
+                // Log retrieved full name for debugging
+                console.log('Stored Full Name:', storedFullName);
+                
+                if (storedFullName) {
+                    // Update full name display
+                    if (fullNameDisplay) {
+                        fullNameDisplay.textContent = storedFullName;
+                    }
+                    
+                    // Update greeting
+                    if (greetingElement) {
+                        greetingElement.textContent = 'Hello, I\'m';
+                    }
+                } else {
+                    console.warn('No full name found in localStorage');
+                }
+            });
+        </script>
+
+</body>
+</html>

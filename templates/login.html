@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Selection</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Whoami?</h1>
+        
+        <div class="profiles">
+            <div class="profile" data-username="Iqbal" data-user-id="1">
+                <a href="#" class="profile-link">
+                    <img src="/static/img/prof1.jpeg" alt="Profile 1">
+                    <span>Iqbal</span>
+                </a>
+            </div>
+            <div class="profile" data-username="Valdo" data-user-id="2">
+                <a href="#" class="profile-link">
+                    <img src="/static/img/prof2.jpeg" alt="Profile 2">
+                    <span>Valdo</span>
+                </a>
+            </div>
+            <div class="profile" data-username="Yogi" data-user-id="3">
+                <a href="#" class="profile-link">
+                    <img src="/static/img/prof3.jpeg" alt="Profile 3">
+                    <span>Yogi</span>
+                </a>
+            </div>
+            <div class="profile" data-username="Ariz" data-user-id="4">
+                <a href="#" class="profile-link">
+                    <img src="/static/img/prof4.jpeg" alt="Profile 4">
+                    <span>Ariz</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static',filename='js/cc.js') }}"></script>
+
+</body>
+</html>

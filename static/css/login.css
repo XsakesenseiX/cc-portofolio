@@ -1,0 +1,87 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #141414;
+    color: #ffffff;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.profiles {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.profile {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.profile:hover {
+    transform: scale(1.1);
+}
+
+.profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+    object-fit: cover;
+    border: 3px solid transparent;
+    transition: border 0.2s;
+}
+
+.profile:hover img {
+    border-color: #ffffff;
+}
+
+.profile span {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #808080;
+    transition: color 0.2s;
+}
+
+.profile:hover span {
+    color: #ffffff;
+}
+
+.add-profile img {
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    padding: 20px;
+    width: 110px;
+    height: 110px;
+}
+
+.manage-profiles button {
+    background-color: transparent;
+    color: #808080;
+    border: 1px solid #808080;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.manage-profiles button:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+}

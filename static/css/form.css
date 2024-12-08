@@ -1,0 +1,164 @@
+/* static/css/form.css */
+
+/* Root Variables for Easy Theming */
+:root {
+    --background-color: #141414;
+    --text-color: #ffffff;
+    --accent-color: #e50914;
+    --input-background: #333;
+    --dot-color: #666;
+    --dot-filled-color: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: var(--text-color);
+}
+
+.pin-container {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+#username-display {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.pin-input-container {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+#pin-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 24px;
+    text-align: center;
+    background-color: var(--input-background);
+    border: none;
+    border-radius: 5px;
+    color: transparent;
+    letter-spacing: 15px;
+    caret-color: var(--text-color);
+    outline: none;
+}
+
+/* Hide actual input text, show only cursor */
+#pin-input::placeholder {
+    color: transparent;
+}
+
+.pin-dots {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.dot {
+    width: 15px;
+    height: 15px;
+    background-color: var(--dot-color);
+    border-radius: 50%;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+}
+
+.dot.filled {
+    background-color: var(--dot-filled-color);
+    transform: scale(1.2);
+}
+
+#submit-pin {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#submit-pin:hover {
+    background-color: #f6121d;
+    transform: scale(1.02);
+}
+
+#submit-pin:active {
+    transform: scale(0.98);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 480px) {
+    .pin-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    #username-display {
+        font-size: 20px;
+    }
+
+    #pin-input {
+        font-size: 20px;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        margin: 0 8px;
+    }
+}
+
+/* Error State */
+.pin-input-error {
+    border: 2px solid var(--accent-color);
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Accessibility and Focus States */
+#pin-input:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* Dark Mode Specific Styles */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #000000;
+    }
+}

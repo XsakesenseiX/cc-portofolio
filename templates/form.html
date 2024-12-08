@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PIN Entry</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+</head>
+<body>
+    <div class="pin-container">
+        <h2 id="username-display"></h2>
+        <input type="password" id="pin-input" maxlength="4" pattern="\d{4}">
+        <button id="submit-pin">Enter</button>
+    </div>
+    <div id="error-message" class="error-message" style="display: none; color: red;"></div>
+
+    <script src="/static/js/pin.js"></script>
+</body>
+<script src="{{ url_for('static',filename='js/form.js') }}"></script>
+</html>
