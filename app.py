@@ -11,14 +11,14 @@ db_config = {
     'host': ('maltekk.mysql.database.azure.com'),
     'user': ('adminadminadmin'),
     'password': ('Admin12345'),
-    'database': ('maltekk-db')
+    'database': ('maltek-db')
 }
 
 def get_azure_db_connection():
     try:
         connection = mysql.connector.connect(
             #user="adminadminadmin", password="Admin12345", host="maltekk.mysql.database.azure.com", port=3306, database="maltekk-db"
-            cnx = mysql.connector.connect(user="adminadminadmin", password="Admin12345", host="maltekk.mysql.database.azure.com", port=3306, database="maltekk-db")
+            cnx = mysql.connector.connect(user="adminadminadmin", password="Admin12345", host="maltekk.mysql.database.azure.com", port=3306, database="maltek-db")
         )
         return connection
     except mysql.connector.Error as err:
