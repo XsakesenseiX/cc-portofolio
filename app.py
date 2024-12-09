@@ -7,47 +7,42 @@ from werkzeug.utils import secure_filename
 import google.generativeai as genai
 
 
-db_config = {
-    'host': ('maltekk.mysql.database.azure.com'),
-    'user': ('adminadminadmin'),
-    'password': ('Admin12345'),
-    'database': ('maltek-db')
-}
+"""connection = connector.connect(
+    user='adminadminadmin',
+    password='Admin12345',
+    host='maltekk.mysql.database.azure.com',
+    port='3306',
+    database='maltek-db'
+)"""
+connection = mysql.connector.connect(
+    host='maltekk.mysql.database.azure.com',  # Replace with your Azure MySQL host
+    user='adminadminadmin',  # Replace with your Azure MySQL username
+    password='Admin12345',  # Replace with your Azure MySQL password
+    database='maltek-db',  # Replace with your Azure MySQL database name
+    port='3306'  # Ensure this path is correct
+)
+
+if connection.is_connected():
+    print('Connected to MySQL Database')
 
 def get_azure_db_connection():
     try:
         connection = mysql.connector.connect(
-            #user="adminadminadmin", password="Admin12345", host="maltekk.mysql.database.azure.com", port=3306, database="maltekk-db"
-            cnx = mysql.connector.connect(user="adminadminadmin", password="Admin12345", host="maltekk.mysql.database.azure.com", port=3306, database="maltek-db")
+            host=('maltekk.mysql.database.azure.com'),
+            user=('adminadminadmin'),
+            password=('Admin12345'),
+            database=('maltek-db'),
+            port='3306'
         )
         return connection
-    except mysql.connector.Error as err:
-        print(f"Database Connection Error: {err}")
+    except Error as e:
+        print(f"Error: {e}")
         return None
-
-def test_database_connection():
-    try:
-        connection = get_azure_db_connection()
-        if connection.is_connected():
-            print("Successfully connected to the database!")
-            cursor = connection.cursor()
-            cursor.execute("SELECT VERSION()")
-            db_version = cursor.fetchone()
-            print(f"Database Version: {db_version[0]}")
-            cursor.close()
-            connection.close()
-        else:
-            print("Connection failed.")
-    except Exception as e:
-        print(f"Connection test failed: {e}")
-
-# Call this function to verify connection
-test_database_connection()
 
 app = Flask(__name__, 
             static_folder='static', 
             template_folder='templates')
-app.secret_key = os.environ.get('SECRET_KEY', 'fallback_secret_key')
+app.secret_key = ('SECRET_KEY', 'fallback_secret_key')
 genai.configure(api_key='AIzaSyD1kcYbZQfSGkneurkI5lfaqpd54dFyd54')
 
 
